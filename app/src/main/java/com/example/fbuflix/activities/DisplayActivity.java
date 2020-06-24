@@ -38,7 +38,7 @@ public class DisplayActivity extends AppCompatActivity {
         tvMDTitle.setText(movie.getTitle());
         tvMDReleaseDate.setText(movie.getRelease_date());
         tvMovieDesc.setText(movie.getOverview());
-        float rating = (float) (5 * (movie.getRating()/10));
-        rbMovieRating.setRating(rating);
+        float rating = (float) movie.getRating() ;
+        rbMovieRating.setRating(rating / 2.0f);
     }
 }
