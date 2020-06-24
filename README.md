@@ -36,7 +36,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I had a much more complex method of parceling objects for intents until I read the documentation. I also faced many bugs with my emulator and android support libraries. I debugged them all after an hour. In addition, designing on AndroidStudio is difficult comparatively to my web development background. 
 
 ## Open-source libraries used
 
