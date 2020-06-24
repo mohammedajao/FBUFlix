@@ -1,7 +1,9 @@
 package com.example.fbuflix.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.fbuflix.MainActivity;
 import com.example.fbuflix.R;
+import com.example.fbuflix.activities.DisplayActivity;
 import com.example.fbuflix.models.Movie;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+    public static final String TAG = "MovieAdapter";
 
     Context context;
     List<Movie> movies;
@@ -49,16 +56,32 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
-    class ViewHolder extends  RecyclerView.ViewHolder {
+    class ViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTitle;
         ImageView ivPoster;
         TextView tvOverview;
+        View movieItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            movieItem = itemView;
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            Log.i(TAG, "Clicked ");
+            if(position != RecyclerView.NO_POSITION) {
+                Movie movie = movies.get(position);
+                Log.i(TAG, "Clicked " + movie.getTitle());
+                Intent intent = new Intent(context, DisplayActivity.class);
+                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+                context.startActivity(intent);
+            }
         }
 
         public void bind(Movie movie) {
