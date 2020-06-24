@@ -88,12 +88,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
             String imageUrl;
+            int pholder = R.drawable.flicks_backdrop_placeholder;
             if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imageUrl = movie.getBackdropPath();
             } else {
                 imageUrl = movie.getPosterPath();
+                pholder = R.drawable.flicks_movie_placeholder;
             }
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            Glide.with(context).load(imageUrl).placeholder(pholder).into(ivPoster);
         }
     }
 }
