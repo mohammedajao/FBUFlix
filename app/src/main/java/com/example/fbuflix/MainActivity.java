@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.fbuflix.activities.DisplayActivity;
 import com.example.fbuflix.adapters.MovieAdapter;
+import com.example.fbuflix.databinding.ActivityMainBinding;
 import com.example.fbuflix.models.Movie;
 
 import org.json.JSONArray;
@@ -32,18 +34,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        // Using ViewBinding Library to inflate XML and reduce findViewByID
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        View view = binding.getRoot();
+        setContentView(view);
 
         movies = new ArrayList<>();
 
-        rvMovies = findViewById(R.id.rvMovies);
+        rvMovies = binding.rvMovies;
         final String API_KEY = getString(R.string.tmdb_api_key);
 
         final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
         rvMovies.setAdapter(movieAdapter);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
-        // Get data from the TMDB API and add it to our collection
+        fetchMovies(movieAdapter);
+    }
+    // Get data from the TMDB API and add it to our collection
+
+    private void fetchMovies(final MovieAdapter movieAdapter) {
+        final String API_KEY = getString(R.string.tmdb_api_key);
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(NOW_PLAYING_URL + API_KEY, new JsonHttpResponseHandler() {
             @Override

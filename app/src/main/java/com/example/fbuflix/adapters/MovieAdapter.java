@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.target.Target;
 import com.example.fbuflix.MainActivity;
 import com.example.fbuflix.R;
 import com.example.fbuflix.activities.DisplayActivity;
@@ -22,6 +24,8 @@ import com.example.fbuflix.models.Movie;
 import org.parceler.Parcels;
 
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     public static final String TAG = "MovieAdapter";
@@ -88,6 +92,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
             String imageUrl;
+            int radius = 30;
+            int margin = 10;
             int pholder = R.drawable.flicks_backdrop_placeholder;
             if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imageUrl = movie.getBackdropPath();
@@ -95,7 +101,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 imageUrl = movie.getPosterPath();
                 pholder = R.drawable.flicks_movie_placeholder;
             }
-            Glide.with(context).load(imageUrl).placeholder(pholder).into(ivPoster);
+
+            Glide.with(context)
+                    .load(imageUrl)
+                    .placeholder(pholder)
+                    .transform(new RoundedCornersTransformation(radius, margin))
+                    .into(ivPoster);
         }
     }
 }

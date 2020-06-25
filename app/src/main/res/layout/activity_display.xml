@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".DisplayActivity">
+
 
     <TextView
         android:id="@+id/tvMDTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ivMDPoster"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:textSize="36sp"
@@ -45,4 +47,17 @@
         android:layout_below="@+id/rbMovieRating"
         android:layout_marginTop="0dp"
         tools:text="Movie Description" />
+
+    <ImageView
+        android:id="@+id/ivMDPoster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/player"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:contentDescription="Visual preview of movie"
+        app:srcCompat="@drawable/flicks_backdrop_placeholder" />
 </RelativeLayout>
