@@ -2,7 +2,7 @@
 
 **FBUFlix** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: **4** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
@@ -17,14 +17,15 @@ The following **required** functionality is completed:
 
 The following **stretch** features are implemented:
 
-* [ ] Improved the user interface by experimenting with styling and coloring.
+* [x] Improved the user interface by experimenting with styling and coloring.
 * [x] Apply rounded corners for the poster or background images using [Glide transformations](https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library#transformations)
 * [x] Apply the popular [View Binding annotation library](http://guides.codepath.org/android/Reducing-View-Boilerplate-with-ViewBinding) to reduce boilerplate code.
 * [x] Allow video trailers to be played in full-screen using the YouTubePlayerView from the details screen.
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [x] Play button only appears if there is a trailer available
+* [x] The YouTube trailer is filtered through rather than indexing the first option
 
 ## Video Walkthrough
 
@@ -40,7 +41,7 @@ I had a much more complex method of parceling objects for intents until I read t
 
 For the Stretch Stories, I faced some new challenges. Modularization of my code in a neat matter proved to be a bit bothersome due to the asynchronous callback from the API. I struggled with getting the ViewBinding Library to import the classes and the YT Video API Player had a minor error I worked too long on where I used the wrong string for the key argument.
 
-My current challenge is the UI Design.
+My current challenge is the theme. Changing the theme has been proven difficult - especially getting it into a dark theme.
 
 ## Open-source libraries used
 
