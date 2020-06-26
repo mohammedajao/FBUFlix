@@ -24,7 +24,8 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [x] Play button only appears if there is a trailer available
+* [x] The YouTube trailer is filtered through rather than indexing the first option
 
 ## Video Walkthrough
 
