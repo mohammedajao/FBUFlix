@@ -9,60 +9,78 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/ivMDPoster"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:contentDescription="Visual preview of movie"
-                app:srcCompat="@drawable/flicks_backdrop_placeholder" />
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/tvMDTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
                 android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/ivMDPoster"
+                app:layout_constraintTop_toBottomOf="@+id/ivMDPoster"
                 tools:text="Movie Title" />
 
             <TextView
-                android:id="@+id/tvMDReleaseDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:textSize="24sp"
-                tools:text="Release Date" />
-
-            <TextView
                 android:id="@+id/tvMovieDesc"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_marginBottom="30dp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivMDPoster"
+                app:layout_constraintStart_toStartOf="@+id/tvMDReleaseDate"
+                app:layout_constraintTop_toBottomOf="@+id/rbMovieRating"
                 tools:text="Movie Description" />
 
             <RatingBar
                 android:id="@+id/rbMovieRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
                 android:clickable="false"
-                android:isIndicator="true" />
+                android:isIndicator="true"
+                app:layout_constraintStart_toStartOf="@+id/tvMDReleaseDate"
+                app:layout_constraintTop_toBottomOf="@+id/tvMDReleaseDate" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tvMDReleaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/tvMDTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvMDTitle"
+                tools:text="Release Date" />
+
+            <ImageView
+                android:id="@+id/ivMDPoster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Visual preview of movie"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/flicks_backdrop_placeholder" />
+
+            <ImageView
+                android:id="@+id/ivPlayTrailer"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@android:drawable/ic_media_play"
+                app:layout_constraintBottom_toBottomOf="@+id/ivMDPoster"
+                app:layout_constraintEnd_toEndOf="@+id/ivMDPoster"
+                app:layout_constraintStart_toStartOf="@+id/ivMDPoster"
+                app:layout_constraintTop_toTopOf="@+id/ivMDPoster" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </RelativeLayout>

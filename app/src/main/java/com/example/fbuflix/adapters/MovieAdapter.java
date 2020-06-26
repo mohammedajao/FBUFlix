@@ -1,5 +1,6 @@
 package com.example.fbuflix.adapters;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -28,14 +29,20 @@ import java.util.List;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+    public interface OnClickListener {
+        void onItemClicked(Intent i, Context context);
+    }
+
     public static final String TAG = "MovieAdapter";
 
     Context context;
     List<Movie> movies;
+    OnClickListener onClickListener;
 
-    public MovieAdapter(Context context, List<Movie> movies) {
+    public MovieAdapter(Context context, List<Movie> movies, OnClickListener onClickListener) {
         this.context = context;
         this.movies = movies;
+        this.onClickListener = onClickListener;
     }
 
     // Usually involves inflating XML data into the holder
@@ -84,7 +91,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 Log.i(TAG, "Clicked " + movie.getTitle());
                 Intent intent = new Intent(context, DisplayActivity.class);
                 intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
-                context.startActivity(intent);
+                onClickListener.onItemClicked(intent, context);
             }
         }
 

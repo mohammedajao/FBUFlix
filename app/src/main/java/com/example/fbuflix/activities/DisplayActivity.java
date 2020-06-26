@@ -25,6 +25,7 @@ import org.parceler.Parcels;
 import okhttp3.Headers;
 
 public class DisplayActivity extends AppCompatActivity {
+
     private static final String TAG = "DisplayActivity";
     public static final String MOVIE_API_LINK = "https://api.themoviedb.org/3/movie/";
 
@@ -33,6 +34,7 @@ public class DisplayActivity extends AppCompatActivity {
     ImageView ivMDPoster;
     RatingBar rbMovieRating;
     TextView tvMovieDesc;
+    ImageView ivPlayTrailer;
     Movie movie;
     String movie_yt_key;
     String trailer_yt_trailer;
@@ -52,7 +54,9 @@ public class DisplayActivity extends AppCompatActivity {
         rbMovieRating = binding.rbMovieRating;
         tvMovieDesc = binding.tvMovieDesc;
         ivMDPoster = binding.ivMDPoster;
+        ivPlayTrailer = binding.ivPlayTrailer;
 
+        ivPlayTrailer.setVisibility(View.GONE);
         tvMDTitle.setText(movie.getTitle());
         tvMDReleaseDate.setText(movie.getRelease_date());
         tvMovieDesc.setText(movie.getOverview());
@@ -62,12 +66,15 @@ public class DisplayActivity extends AppCompatActivity {
         String imageUrl;
         imageUrl = movie.getBackdropPath();
 
+        int radius = 30;
+        int margin = 10;
+
         Glide.with(getApplicationContext())
                 .load(imageUrl)
                 .placeholder(R.drawable.flicks_backdrop_placeholder)
                 .into(ivMDPoster);
 
-        ivMDPoster.setOnClickListener(new View.OnClickListener() {
+        ivPlayTrailer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(trailer_yt_trailer != null && !trailer_yt_trailer.isEmpty()) {
@@ -82,14 +89,20 @@ public class DisplayActivity extends AppCompatActivity {
         getTrailer(movie);
     }
 
-    private void setTrailerLink(String key) {
+    // Gets the YT Trailer key from the movie
+    // Checks if the key is available and reveals the Play button if so
+    private void setTrailerLink() {
+        String key = movie.getYTTrailerKey();
         if(!key.equals("")) {
             movie_yt_key = key;
             trailer_yt_trailer = "https://www.youtube.com/watch?v=" + key;
+            ivPlayTrailer.setVisibility(View.VISIBLE);
             Log.d(TAG, trailer_yt_trailer);
         }
     }
 
+    // Only starts up the asynchronous method calls needed to set the trailer
+    // Initiates API call and get the movie trailer
     private void getTrailer(final Movie movie) {
         final String API_KEY = getString(R.string.tmdb_api_key);
         final String API_URL = MOVIE_API_LINK + movie.getId() + "/videos?api_key=" + API_KEY;
@@ -109,7 +122,7 @@ public class DisplayActivity extends AppCompatActivity {
                     Log.d(TAG, youtubeKey);
                     // Sets trailer link in DisplayActivity and the targeted movie
                     movie.setYTTrailerKey(results);
-                    setTrailerLink(movie.getYTTrailerKey());
+                    setTrailerLink();
                 } catch (JSONException e) {
                     Log.e(TAG, "JSON Exception", e);
                 }

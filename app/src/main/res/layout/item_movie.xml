@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rlMovieLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
 
     <ImageView
         android:id="@+id/ivPoster"
@@ -14,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
+        android:layout_marginEnd="10dp"
         android:contentDescription="@android:string/untitled"
         android:visibility="visible"
         tools:src="@drawable/flicks_movie_placeholder"
@@ -26,7 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:textIsSelectable="false"
         android:textSize="24sp"
+        android:textStyle="bold"
         tools:text="Bloodshot" />
 
     <TextView
@@ -34,8 +38,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
+        android:layout_alignBottom="@+id/ivPoster"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
+        android:layout_marginBottom="-46dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:ellipsize="end"
+        android:textIsSelectable="false"
         tools:text="After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought.&quot;" />
 </RelativeLayout>

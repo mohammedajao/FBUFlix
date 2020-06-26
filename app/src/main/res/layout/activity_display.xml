@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".DisplayActivity">
 
 
@@ -16,6 +17,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:textSize="36sp"
+        android:textStyle="bold"
         tools:text="Movie Title" />
 
     <TextView
@@ -46,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rbMovieRating"
         android:layout_marginTop="0dp"
+        android:textStyle="italic"
         tools:text="Movie Description" />
 
     <ImageView
@@ -60,4 +63,16 @@
         android:layout_marginEnd="0dp"
         android:contentDescription="Visual preview of movie"
         app:srcCompat="@drawable/flicks_backdrop_placeholder" />
+
+    <ImageView
+        android:id="@+id/ivPlayTrailer"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivMDPoster"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:src="@android:drawable/ic_media_play" />
+
 </RelativeLayout>
