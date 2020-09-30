@@ -93,7 +93,7 @@ public class DisplayActivity extends AppCompatActivity {
     // Checks if the key is available and reveals the Play button if so
     private void setTrailerLink() {
         String key = movie.getYTTrailerKey();
-        if(!key.equals("")) {
+        if(!key.isEmpty()) {
             movie_yt_key = key;
             trailer_yt_trailer = "https://www.youtube.com/watch?v=" + key;
             ivPlayTrailer.setVisibility(View.VISIBLE);
